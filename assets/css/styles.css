@@ -72,6 +72,7 @@ ul{
   display:flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
 .filme-content{
@@ -87,8 +88,13 @@ ul{
 .img{
   align-self:flex-start;
 }
+
+.titulo-header{
+  display: flex;
+  flex-direction: row;
+}
 .titulo{
-  font-size: 20px;
+  font-size: 30px;
 }
 .sinopse{
   display:flex;

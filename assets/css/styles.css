@@ -24,13 +24,19 @@ a {
 img {
   display: block;
   max-width: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
+
 ul{
   list-style: none;
 }
+
 .menu-bg{
   background:#4c78ff;
 }
+
 .menu{
   max-width: 960px;
   margin:0 auto;
@@ -76,14 +82,14 @@ ul{
 }
 
 .filme-content{
+  margin: 0 auto;
   max-width: 100%;
   display:flex;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 30px;
   padding:20px;
   flex-direction: column;
-  align-items: center;
-  
+  align-items: center;  
 }
 .img{
   align-self:flex-start;
@@ -107,6 +113,9 @@ ul{
   text-align: justify;
   font-size: 20;
   color:black;
+  margin: 0 auto; 
+  padding-left: 100px;
+  padding-right: 100px;
 }
 .footer {
   display:flex;

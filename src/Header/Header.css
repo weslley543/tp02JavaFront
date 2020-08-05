@@ -1,0 +1,27 @@
+.menu{
+    display: flex;
+    flex-direction: row;
+}
+
+.item-menu{
+    padding: 5px;
+    cursor: pointer;
+}
+
+.item-menu:hover{
+    text-decoration: underline;
+}
+
+.div-menu-usuario{
+    margin-right: 5px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.item-logo{
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+}

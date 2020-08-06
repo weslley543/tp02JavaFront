@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Header from './Header/Header'
+import Header from './Componentes/Header/Header'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

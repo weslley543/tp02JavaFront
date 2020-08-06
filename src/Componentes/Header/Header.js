@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.css'
 
-import user from '../img/user.png'
+import user from '../../img/user.png'
 
 function Header() {
     return(

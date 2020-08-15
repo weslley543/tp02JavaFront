@@ -13,11 +13,8 @@ import {
     Visibility,
     VisibilityOff,
  } from '@material-ui/icons';
- import { makeStyles } from '@material-ui/core/styles';
-
-import './Login.css'
-import { login } from '../../Services/auth';
-import { Link } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import './SignUp.css'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,21 +25,24 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Login(props){
+function SignUp(props){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [nome, setNome] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const classes = useStyles();
 
-    const handleSingIn = () => {
-        if(!email || !password){
-            setError("Entre com e-mail e senha")
+    const handleSignUp = () => {
+        if(!nome || !email || !password){
+            setError("Preencha todos os dados");
         }
-        else {
-            const response = Math.random(); //Criando um token aleatorio para mandar pro login
-            login(response)
-            props.history.push("/home")
+        else{
+            try{
+                props.history.push("/");
+            }catch(err){
+                setError(err);
+            }
         }
     }
 
@@ -51,14 +51,15 @@ function Login(props){
             <Grid container className="main">
                 <img alt="logo" src={require('../../img/logo.png')} className="logo"/>
                 <Grid item xs={3}>
-                    <form className={classes.root}>
+                    <form className={classes.root} autoComplete="off">
                         {error && <p className="msgErro">{error}</p>}
+                        <TextField className="input"  label="Nome" variant="outlined" onChange={e => setNome(e.target.value)}/>
                         <TextField
-                            // variant="outlined" 
+                            variant="outlined" 
                             value={email}
                             label="Email"
+                            className="input"
                             onChange={e => setEmail(e.target.value)} 
-                            variant="outlined" 
                             id="email"
                             InputProps={{
                                 startAdornment:(
@@ -72,6 +73,8 @@ function Login(props){
                             id="standard-adornment-password"
                             type={showPassword ? 'text' : 'password'}
                             value={password}
+                            className="input"
+                            variant="outlined" 
                             placeholder="Password"
                             onChange={e => setPassword(e.target.value)}
                             endAdornment={
@@ -85,11 +88,9 @@ function Login(props){
                             </InputAdornment>
                             }
                         />
-                        <Button variant="contained" className="button" color="primary" onClick={handleSingIn}>
-                            Entrar
+                        <Button variant="contained" color="primary" className="button" onClick={handleSignUp}>
+                            Cadastrar
                         </Button>
-                        <br/>
-                        <Link className="link" to="/signup">Clique aqui para fazer seu cadastro!</Link>
                     </form>
                 </Grid>
             </Grid>
@@ -97,4 +98,4 @@ function Login(props){
     );
 }
 
-export default Login;
+export default SignUp;

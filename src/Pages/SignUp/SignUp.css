@@ -5,6 +5,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    font-size: calc(10px + 2vmin);
 }
 
 .logo{
@@ -16,12 +17,10 @@
 }
 
 .msgErro{
+    font-size: calc(10px + 2vmin);
     color: #34425A;
 }
 
-.link{
-    font-size: 10;
-    font-weight: bold;
-    color: #999;
-    text-decoration: none;
+.input{
+    
 }

@@ -89,7 +89,7 @@ function Login(props){
                             Entrar
                         </Button>
                         <br/>
-                        <Link className="link" to="/signup">Clique aqui para fazer seu cadastro!</Link>
+                        <Link className="link" to="/signup">Clique aqui e cadastre-se</Link>
                     </form>
                 </Grid>
             </Grid>

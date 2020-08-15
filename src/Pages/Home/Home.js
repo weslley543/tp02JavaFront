@@ -13,7 +13,9 @@ import {
     Stars as Fav,
     Comment,
 } from '@material-ui/icons'
+
 import './Home.css'
+import Header from '../../Componentes/Header/Header'
 
 
 function Home() {
@@ -70,6 +72,7 @@ function Home() {
 
     return(
       <>
+        <Header />
         {/* A container spacing define um espaçamento entre os elementos dentro dela */}
         <Grid container spacing={1} className="main">
             {/* Componente de Card começa no Grid (define o tamanho de 3 colunas para cada card) */}

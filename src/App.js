@@ -4,7 +4,9 @@ import {HashRouter, BrowserRouter as Router, Route, Switch, Redirect } from 'rea
 
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
-import SignUp from './Pages/SignUp/SignUp'
+import SignUp from './Pages/SignUp/SignUp';
+import Filme from './Pages/Filme/Filme';
+
 
 import {isAuthenticated} from './Services/auth';
 
@@ -26,6 +28,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/filme" component={Filme} />
         <PrivateRoute path="/home" component={Home} />
         <Route path="*" component={() => <h1>Not found</h1>} />
       </Switch>

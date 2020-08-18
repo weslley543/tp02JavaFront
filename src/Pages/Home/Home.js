@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     Typography,
     Grid,
@@ -16,60 +16,26 @@ import {
 
 import './Home.css'
 import Header from '../../Componentes/Header/Header'
-
+import { api } from '../../Services/api';
 
 function Home() {
-    var filmes = [
-        {
-            id: 1,
-            nome: "Frozen 2",
-            ano_lancamento: 2019,
-            genero: "Animação",
-            descricao: "Duas irmãs, uma faz gelo e a outra não",
-            imagem: require('./img/frozen2.jpg')
-        },
-        {
-            id: 2,
-            nome: "O Sol também é uma estrela",
-            ano_lancamento: 2019,
-            genero: "Romance",
-            descricao: "Filminho de romance que você chora",
-            imagem: require('./img/oSol.png')
-        },
-        {
-            id: 3,
-            nome: "Detetive Pikachu",
-            ano_lancamento: 2018,
-            genero: "Aventura",
-            descricao: "O pikachu de quando você era criança",
-            imagem: require('./img/pokemon.jpg')
-        },
-        {
-            id: 4,
-            nome: "Avengers - End Game",
-            ano_lancamento: 2019,
-            genero: "Ação",
-            descricao: "Thanos morre no começo do filme",
-            imagem: require('./img/vingadores.png')
-        },
-        {
-            id: 5,
-            nome: "Harry Potter",
-            ano_lancamento: 2006,
-            genero: "Aventura",
-            descricao: "O menino que viveu e o cara sem nariz",
-            imagem: require('./img/harryPotter.jpg')
-        },
-        {
-            id: 6,
-            nome: "Titanic",
-            ano_lancamento: 1998,
-            genero: "Romance",
-            descricao: "Ele não precisava ter morrido né",
-            imagem: require('./img/titanic.jpg')
-        }
-    ]
+    const [filmes, setFilmes] = useState([]);
 
+    useEffect(()=>{
+        api.get('/filmes').then(response=>{
+            if(response.status === 200){
+                const { data } = response;
+                setFilmes(data);
+            }
+        })
+    }, [filmes, setFilmes])
+
+    const handleLike = async (id_filme)=>{
+        await api.put(`/filmes/gostei/${id_filme}`);
+    }
+    const handleDislike = async (id_filme)=>{
+        await api.put(`/filmes/nao_gostei/${id_filme}`);
+    }
     return(
       <>
         <Header />
@@ -78,27 +44,27 @@ function Home() {
             {/* Componente de Card começa no Grid (define o tamanho de 3 colunas para cada card) */}
             {/* Cada linha tem 12 colunas == 4 cards de 3 colunas */}
             {filmes.map(filme => (
-                <Grid item xs={3} key={filme.id}>
-                    <Card className="root" key={filme.id}>
+                <Grid item xs={3} key={filme.id_filme}>
+                    <Card className="root" key={filme.id_filme}>
                         <img 
-                            src={filme.imagem} 
+                            src={filme.capa_filme} 
                             width="400" height="250"
                             alt=" "
                         />
                         <CardContent>
-                            <Typography variant="h5">{filme.nome}</Typography>
+                            <Typography variant="h5">{filme.titulo}</Typography>
                             <Typography variant="subtitle2">{filme.ano_lancamento}</Typography>
-                            <Typography variant="subtitle2">{filme.genero}</Typography>
+                            <Typography variant="subtitle2">{filme.genero.map(genero=>(<p key={genero.id_genero}>{genero.nome_genero}</p>))}</Typography>
                             <Typography variant="body1">
                                 Descrição do filme:
                             </Typography>
                             <Typography variant="body2" paragraph>{filme.descricao}</Typography>
                         </CardContent>
                         <CardActions >
-                            <IconButton aria-label="Curtir">
+                            <IconButton onClick={handleLike(filme.id_filme)} aria-label="Curtir">
                                 <Like />
                             </IconButton>
-                            <IconButton aria-label="Não gostei">
+                            <IconButton onClick={handleDislike(filme.id_filme)} aria-label="Não gostei">
                                 <Dislike />
                             </IconButton>
                             <IconButton aria-label="Favorito">

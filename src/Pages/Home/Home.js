@@ -28,7 +28,7 @@ function Home() {
                 setFilmes(data);
             }
         })
-    }, [filmes, setFilmes])
+    }, [])
 
     const handleLike = async (id_filme)=>{
         await api.put(`/filmes/gostei/${id_filme}`);
@@ -61,10 +61,10 @@ function Home() {
                             <Typography variant="body2" paragraph>{filme.descricao}</Typography>
                         </CardContent>
                         <CardActions >
-                            <IconButton onClick={handleLike(filme.id_filme)} aria-label="Curtir">
+                            <IconButton onClick={()=>handleLike(filme.id_filme)} aria-label="Curtir">
                                 <Like />
                             </IconButton>
-                            <IconButton onClick={handleDislike(filme.id_filme)} aria-label="Não gostei">
+                            <IconButton onClick={()=> handleDislike(filme.id_filme)} aria-label="Não gostei">
                                 <Dislike />
                             </IconButton>
                             <IconButton aria-label="Favorito">

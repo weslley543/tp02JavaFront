@@ -3,6 +3,16 @@ body{
     width: 100%;
 }
 
+textarea{
+    resize: none;
+    border-radius: 5px;
+    width: 50%;
+    height: 40px;
+    margin-bottom: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .grid-filme{
     direction:column;
     justify:"center";
@@ -92,4 +102,42 @@ body{
 .p-dados-filme-likes{
     font-size: 40px;
     color: rgb(16, 156, 40);
+}
+
+.div-realizar-comentario{
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.div-realizar-comentario > div{
+    display: flex;
+    width: 50%;
+}
+
+#nome-usuario{
+    border-radius: 5px;
+    border-style: solid;
+    height: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.div-nome-comentario{
+    display: flex;
+    flex-direction: column;
+}
+
+.div-nomecomentario-enviar{
+    justify-content: space-between;
+}
+
+.div-comentario-filme > div{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    font-weight: bold;
+    text-align: center;
 }

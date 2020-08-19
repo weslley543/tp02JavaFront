@@ -9,6 +9,7 @@ import {
     AccountCircle as IconeUsuario, 
     ThumbUpAlt as Like,
     ThumbDown as Dislike,
+    AddComment as Comentario,
 } from '@material-ui/icons'
 
 import { green, red } from '@material-ui/core/colors';
@@ -20,7 +21,7 @@ import { api } from '../../Services/api';
 function Filme() {
     const [filme, setFilmes] = useState([]);
     const [genero, setGeneros] = useState([]);
-    const [comentarios, setComentarios] = useState([]);
+    let [comentarios, setComentarios] = useState([]);
     
     let [qtd_gostei, setGostei] = useState([]);
     let [qtd_nao_gostei, setNaoGostei] = useState([]);
@@ -41,6 +42,7 @@ function Filme() {
         api.get(`/comentarios/filmes/${id_filme}`).then(response=>{
             if(response.status === 200){
                 const { data } = response;
+                console.log(data);
                 setComentarios(data);
             }
         })
@@ -53,6 +55,37 @@ function Filme() {
     const handleDislike = async (id_filme)=>{
         await api.put(`/filmes/nao_gostei/${id_filme}`);
         setNaoGostei(++qtd_nao_gostei);
+    }
+    const handleEnviar = async ()=>{
+        let comentario_string = document.getElementById("comentario").value;
+        let usuario = document.getElementById("nome-usuario").value;
+        let id_filme = window.location.href.split("/")[5];
+        
+        if(comentario_string != ""){
+
+            if(usuario === "") usuario = "Anônimo"
+            // requisição post aqui dentro!
+
+            let comentario = {
+                comentario: comentario_string,
+                nome_usuario: usuario
+            };
+
+            api.post(`/comentarios/filmes/${id_filme}`, comentario)
+            .then(() => {
+                document.getElementById("comentario").value = "";
+                document.getElementById("nome-usuario").value = "";
+
+                
+                api.get(`/comentarios/filmes/${id_filme}`).then(response=>{
+                    if(response.status === 200){
+                        const { data } = response;
+                        console.log(data);
+                        setComentarios(data);
+                    }
+                })
+            });
+        }
     }
 
     return(
@@ -98,15 +131,32 @@ function Filme() {
                         <div className="div-comentarios-filme">
                         {comentarios.map((comentario,index) => (
                             <div key={index} className="div-comentario-filme">
-                                <IconButton>
-                                    <IconeUsuario style={{ fontSize: 40 }}/>
-                                </IconButton>
+                                <div>
+                                    <IconButton>
+                                        <IconeUsuario style={{ fontSize: 40 }}/>
+                                    </IconButton>{comentario.nome_usuario}
+                                </div>
                                 <span>{comentario.comentario}</span>
                             </div>
                         ))}
                         </div>
                     </div>
-                
+
+                    <div className="div-realizar-comentario">
+                        <div>
+                            <label htmlFor="comentario">Digite seu comentário</label>
+                        </div>
+                        <textarea id="comentario" placeholder="Manda bala nos comments!"></textarea>
+                        <div className="div-nomecomentario-enviar">
+                            <div className="div-nome-comentario">
+                                <label htmlFor="nome-usuario">Nome</label>
+                                <input id="nome-usuario" type="text" placeholder="Anônimo"></input>
+                            </div>
+                            <IconButton onClick={()=> handleEnviar()}>
+                                <Comentario style={{ fontSize: 40, color: green[500] }}/>
+                            </IconButton>
+                        </div>
+                    </div>
                 </Grid>
             </div>
         </div>

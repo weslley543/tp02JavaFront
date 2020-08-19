@@ -14,6 +14,8 @@ import {
     Comment,
 } from '@material-ui/icons'
 
+import {Link} from 'react-router-dom';
+
 import './Home.css'
 import Header from '../../Componentes/Header/Header'
 import { api } from '../../Services/api';
@@ -44,13 +46,15 @@ function Home() {
             {/* Componente de Card começa no Grid (define o tamanho de 3 colunas para cada card) */}
             {/* Cada linha tem 12 colunas == 4 cards de 3 colunas */}
             {filmes.map(filme => (
-                <Grid item xs={3} key={filme.id_filme}>
+                <Grid item lg={3} key={filme.id_filme}>
                     <Card className="root" key={filme.id_filme}>
-                        <img 
-                            src={filme.capa_filme} 
-                            width="400" height="250"
-                            alt=" "
-                        />
+                        <Link to={`filme/${filme.id_filme}`}>
+                            <img
+                                src={filme.capa_filme} 
+                                className="fotoFilme"
+                            />
+                        </Link>
+
                         <CardContent>
                             <Typography variant="h5">{filme.titulo}</Typography>
                             <Typography variant="subtitle2">{filme.ano_lancamento}</Typography>

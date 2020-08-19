@@ -7,7 +7,6 @@ import Login from './Pages/Login/Login';
 import SignUp from './Pages/SignUp/SignUp';
 import Filme from './Pages/Filme/Filme';
 
-
 import {isAuthenticated} from './Services/auth';
 
 const PrivateRoute= ({ component: Component, ...rest}) => (

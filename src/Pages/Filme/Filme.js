@@ -58,7 +58,7 @@ function Filme() {
     }
     const handleEnviar = async ()=>{
         let comentario_string = document.getElementById("comentario").value;
-        let usuario = document.getElementById("nome-usuario").value;
+        let usuario = localStorage.getItem('nome');
         let id_filme = window.location.href.split("/")[5];
         
         if(comentario_string != ""){
@@ -71,12 +71,11 @@ function Filme() {
                 nome_usuario: usuario
             };
 
-            api.post(`/comentarios/filmes/${id_filme}`, comentario)
+            api.post(`/comentarios/filmes/${id_filme}/usuario/${localStorage.getItem('id_usuario')}`, comentario)
             .then(() => {
                 document.getElementById("comentario").value = "";
-                document.getElementById("nome-usuario").value = "";
+                // document.getElementById("nome-usuario").value = "";
 
-                
                 api.get(`/comentarios/filmes/${id_filme}`).then(response=>{
                     if(response.status === 200){
                         const { data } = response;
@@ -134,7 +133,7 @@ function Filme() {
                                 <div>
                                     <IconButton>
                                         <IconeUsuario style={{ fontSize: 40 }}/>
-                                    </IconButton>{comentario.nome_usuario}
+                                    </IconButton>{comentario.usuario.nome}
                                 </div>
                                 <span>{comentario.comentario}</span>
                             </div>
@@ -148,10 +147,10 @@ function Filme() {
                         </div>
                         <textarea id="comentario" placeholder="Manda bala nos comments!"></textarea>
                         <div className="div-nomecomentario-enviar">
-                            <div className="div-nome-comentario">
+                            {/* <div className="div-nome-comentario">
                                 <label htmlFor="nome-usuario">Nome</label>
                                 <input id="nome-usuario" type="text" placeholder="Anônimo"></input>
-                            </div>
+                            </div> */}
                             <IconButton onClick={()=> handleEnviar()}>
                                 <Comentario style={{ fontSize: 40, color: green[500] }}/>
                             </IconButton>

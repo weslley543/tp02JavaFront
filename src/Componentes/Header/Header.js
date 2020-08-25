@@ -23,12 +23,12 @@ function Header(props) {
 
     return(
         <div className="menu">
-            <p className="item-menu">Categorias</p>
+            {/* <p className="item-menu">Categorias</p>
             <p className="item-menu">Favoritos</p>
-            <p className="item-menu">Mais Assistidos</p>
+            <p className="item-menu">Mais Assistidos</p> */}
             <div className="div-menu-usuario">
                 <img src={user} className="item-logo"/>
-                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>Gustavo Serpeloni</Button>
+                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>{localStorage.getItem('nome')}</Button>
                 <Menu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                     <MenuItem onClick={handleClose}>Sair</MenuItem>
                 </Menu>

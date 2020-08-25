@@ -16,6 +16,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import './SignUp.css'
 
+import { api } from '../../Services/api';
+
 const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
@@ -27,19 +29,27 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp(props){
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [password_hash, setPassword] = useState('');
     const [nome, setNome] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const classes = useStyles();
 
-    const handleSignUp = () => {
-        if(!nome || !email || !password){
+    const handleSubmmit = async () =>{
+        const response = await api.post('/usuario', {email, password_hash, nome})
+
+        if(response.status === 200){
+            props.history.push("/");
+        }
+    }
+
+    const handleSignUp = async () => {
+        if(!nome || !email || !password_hash){
             setError("Preencha todos os dados");
         }
         else{
             try{
-                props.history.push("/");
+                await handleSubmmit();
             }catch(err){
                 setError(err);
             }
@@ -72,7 +82,7 @@ function SignUp(props){
                         <Input
                             id="standard-adornment-password"
                             type={showPassword ? 'text' : 'password'}
-                            value={password}
+                            value={password_hash}
                             className="input"
                             variant="outlined" 
                             placeholder="Password"

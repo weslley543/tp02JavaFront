@@ -19,6 +19,8 @@ import './Login.css'
 import { login } from '../../Services/auth';
 import { Link } from "react-router-dom";
 
+import { api } from '../../Services/api';
+
 const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
@@ -30,19 +32,30 @@ const useStyles = makeStyles((theme) => ({
 
 function Login(props){
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [senha, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const classes = useStyles();
 
-    const handleSingIn = () => {
-        if(!email || !password){
+    const handleSubmmit = async () =>{
+        const response = await api.post('/session', {email,senha})
+        
+        if(response.status === 200){
+            login(response)
+            localStorage.setItem('id_usuario', response.data.id_usuario)
+            localStorage.setItem('nome', response.data.nome)
+            localStorage.setItem('email', response.data.email)
+            localStorage.setItem('senha', response.data.senha)
+            props.history.push("/home")
+        }
+    }
+
+    const handleSingIn = async () => {
+        if(!email || !senha){
             setError("Entre com e-mail e senha")
         }
-        else {
-            const response = Math.random(); //Criando um token aleatorio para mandar pro login
-            login(response)
-            props.history.push("/home")
+        else { 
+            await handleSubmmit();
         }
     }
 
@@ -71,8 +84,8 @@ function Login(props){
                         <Input
                             id="standard-adornment-password"
                             type={showPassword ? 'text' : 'password'}
-                            value={password}
-                            placeholder="Password"
+                            value={senha}
+                            placeholder="Senha"
                             onChange={e => setPassword(e.target.value)}
                             endAdornment={
                             <InputAdornment position="end">

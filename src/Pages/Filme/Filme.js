@@ -27,7 +27,7 @@ function Filme() {
     let [qtd_nao_gostei, setNaoGostei] = useState([]);
 
     useEffect(()=>{
-        let id_filme = window.location.href.split("/")[5];
+        let id_filme = window.location.href.split("/")[6];
 
         api.get(`filmes/${id_filme}`).then(response=>{
             if(response.status === 200){

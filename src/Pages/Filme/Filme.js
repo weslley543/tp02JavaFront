@@ -59,7 +59,7 @@ function Filme() {
     const handleEnviar = async ()=>{
         let comentario_string = document.getElementById("comentario").value;
         let usuario = localStorage.getItem('nome');
-        let id_filme = window.location.href.split("/")[5];
+        let id_filme = window.location.href.split("/")[6];
         
         if(comentario_string != ""){
 

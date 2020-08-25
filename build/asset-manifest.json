@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/tp02JavaFront/static/css/main.15d6ec4f.chunk.css",
+    "main.js": "/tp02JavaFront/static/js/main.96546833.chunk.js",
+    "main.js.map": "/tp02JavaFront/static/js/main.96546833.chunk.js.map",
+    "runtime-main.js": "/tp02JavaFront/static/js/runtime-main.b660f630.js",
+    "runtime-main.js.map": "/tp02JavaFront/static/js/runtime-main.b660f630.js.map",
+    "static/js/2.8faff45c.chunk.js": "/tp02JavaFront/static/js/2.8faff45c.chunk.js",
+    "static/js/2.8faff45c.chunk.js.map": "/tp02JavaFront/static/js/2.8faff45c.chunk.js.map",
+    "index.html": "/tp02JavaFront/index.html",
+    "precache-manifest.b822902c1c38c682f2dcec47fabe3763.js": "/tp02JavaFront/precache-manifest.b822902c1c38c682f2dcec47fabe3763.js",
+    "service-worker.js": "/tp02JavaFront/service-worker.js",
+    "static/css/main.15d6ec4f.chunk.css.map": "/tp02JavaFront/static/css/main.15d6ec4f.chunk.css.map",
+    "static/js/2.8faff45c.chunk.js.LICENSE.txt": "/tp02JavaFront/static/js/2.8faff45c.chunk.js.LICENSE.txt",
+    "static/media/logo.png": "/tp02JavaFront/static/media/logo.0c3b1f08.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b660f630.js",
+    "static/js/2.8faff45c.chunk.js",
+    "static/css/main.15d6ec4f.chunk.css",
+    "static/js/main.96546833.chunk.js"
+  ]
+}

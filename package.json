@@ -2,8 +2,7 @@
   "name": "projeto-filmes",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://{gserpeloni}.github.io/portifolioGs/",
-  "dependencies": {
+  "homepage": "https://weslley543.github.io/tp02JavaFront/",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
